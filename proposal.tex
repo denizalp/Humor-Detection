@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[legalpaper, portrait, margin=1.5in]{geometry}
+\usepackage{amsmath}
+
+\author{}
+\date{}
+
+\begin{document}
+\begin{center}
+    \textbf{\LARGE \scshape Semi-supervised Humor Detection with Adversarial Training Methods}
+\end{center}
+\begin{center}
+    Denizalp Goktas (dg2906), Linying Zhang (lz2629), Da Hua Chen (dc2802)
+\end{center}
+
+\section{Literature Review}
+        Humor is an essential element of daily communication, yet, the construction of computational models that discover the structures of humor, recognize humor and even generate humor remains a challenge and there have been yet few attempts on it [1] [2].\\\\
+        There have been also attempts [3] [4] to formalize humor from the perspective of artificial intelligence. However, the drawback of these methods is that they generate a very specific category of humor. A few papers exist that tackle this challenge using classical machine learning techniques such as random forests and Na{\"i}ve Bayes [5]. We will focus on deep learning methods since the accuracy of classical machine learning techniques seems to be weaker than deep learning methods. \\\\
+Deep learning papers on humor detection are sparse [1], and primarily make use of supervised deep learning techniques. Because the literature on semi-supervised techniques in deep learning is sparse, our project will try to advance the literature by using recent advances in semi-supervised adversarial techniques to the humor detection problem [7]. We believe that a semi-supervised approach may allow the model to become familiar with many different types of humor, while adversarial training methods will allow it to become more resilient to changes in the text so that it can handle subtleties in sentences that may have different meanings.
+
+
+\section{Problem and Desired Outcomes}
+        Humor can simply be defined as “the quality of being amusing or comic, especially as expressed in literature or speech”. As a result, our goal is to create a deep learning model that identifies accurately such language and is robust to double meanings by using unlabeled examples in the training set–making our model a semi-supervised one.
+
+\section{Datasets and Methods}
+         In order to build a semi-supervised model that classifies results based on the definition we have given, we will use a variety of datasets. 
+         The available datasets include the Yelp Dataset, focusing on the ``funny" category [2], a short jokes dataset containing around 20,000 jokes [8], a dataset of one-liners [9], and a larger dataset of about 200,000 jokes scraped from three different sources that include scores and ratings for humor level [10]. One challenge will be to generate or sample negative examples, because the datasets mentioned only have positive examples. As in [1] and [5], sampling from sources such as news websites can be an effective method for generating negative examples.
+        \\\\
+        The methods we will use in our model will include adversarial training [7]. It is known that deep learning models can be quite susceptible to small perturbations in the input [6]. Adversarial training methods have been shown to make deep learning models more robust to small adversarial perturbations [7], and we believe that they are applicable to the domain of humor detection, because it has been shown to achieve state-of-the-art results in sentiment classification [7]. We plan to use an LSTM model with word embedding inputs and small perturbations. The perturbations are worst-case perturbations and the model is trained to be robust against perturbations of the word embeddings. This regularization method called adversarial training [7]. A similar method is virtual adversarial training, which "can be considered as making the classifier resistant to perturbations in directions to which it is most sensitive on the current model", but unlike adversarial training, does not require labels, so it can be used in a semi-supervised setting [7].
+
+\section{Evaluation Metrics}
+We will evaluate our model against the current state-of-the art models for humor detection [1]. The metrics used will be accuracy, precision, recall, and F1 score. We will conclude that our model is successful if it reaches results comparable to that of the current state-of-the-art methods [1] [5].
+\pagebreak
+\section{Works Cited}
+\normalfont{
+[1] Chen, P.-Y. and Soo, V.-W. Humor recognition using deep learning. In}\textit{ Proceedings of the 2018 Conference of the North American
+Chapter of the Association for Computational Linguistics: Human Language Technologies, }\normalfont{volume 2, pp. 113–117, 2018.
+}
+\\\\
+\normalfont{
+[2] de Oliveira, Luke/Rodrigo, Alfredo Lainez (2017): Humor Detection in Yelp reviews
+}
+\\\\
+\normalfont{
+[3] Petrovic, S., \& Matthews, D. (2013, August). Unsupervised joke generation from big data. In ACL
+(2) (pp. 228-232)
+}
+\\\\
+\normalfont{
+[4] G. Ritchie. “Computational mechanisms for pun
+generation” in }\textit{Proceedings of the 10th European Natural
+Language Generation Workshop,} 2005.
+\\\\
+\normalfont{
+[5] D. Yang, A. Lavie, C. Dyer, and E. Hovy. Humor recognition and
+humor anchor extraction. 2015.
+}
+\\\\
+\normalfont{
+[6] https://www.kdnuggets.com/2015/07/deep-learning-adversarial-examples-misconceptions.html
+}
+\\\\
+\normalfont{
+[7] Takeru Miyato, Andrew M Dai, and Ian Goodfellow. 2016. Adversarial Training
+Methods for Semi-Supervised Text Classification. In }\textit{Proceedings of the International Conference on Learning Representations (ICLR)
+}
+\\\\
+\normalfont{
+[8] https://www.kaggle.com/abhinavmoudgil95/short-jokes
+}
+\\\\
+\normalfont{
+[9] https://github.com/CrowdTruth/Short-Text-Corpus-For-Humor-Detection
+}
+\\\\
+\normalfont{
+[10] https://github.com/taivop/joke-dataset
+}
+\end{document}
