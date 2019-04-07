@@ -1,2 +1,2 @@
-# Hate-Speech-Detection
-A classifier to detect hate speech online (twitter), using aversarial methods.
+# Humor-Detection
+A classifier to detect humor using adversarial methods.
