@@ -42,9 +42,9 @@ flags.DEFINE_boolean('lowercase', True, 'Whether to lowercase document terms.')
 # IMDB
 flags.DEFINE_string('imdb_input_dir', '', 'The input directory containing the '
                     'IMDB sentiment dataset.')
-flags.DEFINE_integer('imdb_validation_pos_start_id', 10621, 'File id of the '
+flags.DEFINE_integer('imdb_validation_pos_start_id', 4000, 'File id of the '
                      'first file in the pos sentiment validation set.')
-flags.DEFINE_integer('imdb_validation_neg_start_id', 10625, 'File id of the '
+flags.DEFINE_integer('imdb_validation_neg_start_id', 4000, 'File id of the '
                      'first file in the neg sentiment validation set.')
 
 # DBpedia
