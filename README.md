@@ -143,9 +143,3 @@ Flags particular to each job are defined in the main binary files.
 
 Command-line flags defined in [`document_generators.py`](https://github.com/tensorflow/models/tree/master/research/adversarial_text/data/document_generators.py)
 control which dataset is processed and how.
-
-## Contact for Issues
-
-* Ryan Sepassi, @rsepassi
-* Andrew M. Dai, @a-dai <adai@google.com>
-* Takeru Miyato, @takerum (Original implementation)
