@@ -126,7 +126,7 @@ def train_step(sess, train_op, loss, global_step):
     format_str = ('step %d, loss = %.2f (%.1f examples/sec; %.3f ' 'sec/batch)')
     tf.logging.info(format_str % (global_step_val, loss_val, examples_per_sec,
                                   sec_per_batch))
-
+    print (global_step_val, loss_val)
   if np.isnan(loss_val):
     raise OverflowError('Loss is nan')
 
