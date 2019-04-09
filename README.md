@@ -1,6 +1,6 @@
 # Semi-supervised Humor Detection with Adversarial Training Methods
 
-Code partially taken [*Adversarial Training Methods for Semi-Supervised Text Classification*](https://arxiv.org/abs/1605.07725) and [*Semi-Supervised Sequence Learning*](https://arxiv.org/abs/1511.01432).
+Code partially taken from [*Adversarial Training Methods for Semi-Supervised Text Classification*](https://arxiv.org/abs/1605.07725) and [*Semi-Supervised Sequence Learning*](https://arxiv.org/abs/1511.01432).
 
 ## Requirements
 
