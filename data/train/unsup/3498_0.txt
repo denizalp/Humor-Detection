@@ -1,1 +1,0 @@
-food = good\nservice = nonexistent\nliterally did not see our waitress\nstill trying to flag someone down so we can pay and leave haha
