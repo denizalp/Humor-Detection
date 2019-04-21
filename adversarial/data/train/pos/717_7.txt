@@ -1,0 +1,1 @@
+5  -  5 Tables\n4  -  4 Chairs per Table\n3  -  Afternoon Coffee Hour (3 pm)\n2  -  Double Cappuccino ($3.59)\n1  -  Shortcake Crepe ($7.99)\n\nQuestion.What's Frosty Flakes?\nOh.It's kind of like Shaved Ice.\nOkay.I'll try when weather's warmer.\nThank you.

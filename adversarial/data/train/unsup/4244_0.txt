@@ -1,0 +1,1 @@
+Food: Delicious\nChips: Pleasing\nService: Leaves much to be desired\nMargaritas: Not good\n\nIf you like spicy food and you aren't white, this is a good spot.
