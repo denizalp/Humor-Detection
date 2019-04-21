@@ -1,1 +1,1 @@
-food = good\nservice = nonexistent\nliterally did not see our waitress\nstill trying to flag someone down so we can pay and leave haha
+Très bon resto français!  Situé dans une belle maison (probablement centenaire), l'ambiance est chaleureuse et intime.  Les coupes de viandes et cuissons sont excellentes, servies avec des sauces très aromatiques, et se marient vraiment bien ensemble.  Tout est vraiment très bon, de la soupe au dessert!\n\nN'oubliez pas votre vin! Le resto n'est pas très grand et bien connu dans le coin alors réservez tot!
