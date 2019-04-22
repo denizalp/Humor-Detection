@@ -45,7 +45,7 @@ $ PRETRAIN_DIR=models/imdb_pretrain
 $ python src/pretrain.py \
     --train_dir=$PRETRAIN_DIR \
     --data_dir=$IMDB_DATA_DIR \
-    --vocab_size=18823 \
+    --vocab_size=61914 \
     --embedding_dims=256 \
     --rnn_cell_size=1024 \
     --num_candidate_samples=1024 \
