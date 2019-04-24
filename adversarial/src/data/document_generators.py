@@ -39,12 +39,12 @@ flags.DEFINE_boolean('output_bigrams', False, 'Whether to output bigrams.')
 flags.DEFINE_boolean('output_char', False, 'Whether to output characters.')
 flags.DEFINE_boolean('lowercase', True, 'Whether to lowercase document terms.')
 
-# IMDB
-flags.DEFINE_string('imdb_input_dir', '', 'The input directory containing the '
-                    'IMDB sentiment dataset.')
-flags.DEFINE_integer('imdb_validation_pos_start_id', 4000, 'File id of the '
+# YELP
+flags.DEFINE_string('yelp_input_dir', '', 'The input directory containing the '
+                    'Yelp review dataset.')
+flags.DEFINE_integer('yelp_validation_pos_start_id', 10001, 'File id of the '
                      'first file in the pos sentiment validation set.')
-flags.DEFINE_integer('imdb_validation_neg_start_id', 4000, 'File id of the '
+flags.DEFINE_integer('yelp_validation_neg_start_id', 10001, 'File id of the '
                      'first file in the neg sentiment validation set.')
 
 # DBpedia
@@ -96,8 +96,8 @@ def documents(dataset='train',
   random.seed(302)
 
   ds = FLAGS.dataset
-  if ds == 'imdb':
-    docs_gen = imdb_documents
+  if ds == 'yelp':
+    docs_gen = yelp_documents
   elif ds == 'dbpedia':
     docs_gen = dbpedia_documents
   elif ds == 'rcv1':
@@ -155,15 +155,15 @@ def tokens(doc):
           yield bigram
 
 
-def imdb_documents(dataset='train',
+def yelp_documents(dataset='train',
                    include_unlabeled=False,
                    include_validation=False):
-  """Generates Documents for IMDB dataset.
+  """Generates Documents for Yelp dataset.
 
   Data from http://ai.stanford.edu/~amaas/data/sentiment/
 
   Args:
-    dataset: str, identifies folder within IMDB data directory, test or train.
+    dataset: str, identifies folder within Yelp data directory, test or train.
     include_unlabeled: bool, whether to include the unsup directory. Only valid
       when dataset=train.
     include_validation: bool, whether to include validation data.
@@ -172,21 +172,21 @@ def imdb_documents(dataset='train',
     Document
 
   Raises:
-    ValueError: if FLAGS.imdb_input_dir is empty.
+    ValueError: if FLAGS.yelp_input_dir is empty.
   """
-  if not FLAGS.imdb_input_dir:
-    raise ValueError('Must provide FLAGS.imdb_input_dir')
+  if not FLAGS.yelp_input_dir:
+    raise ValueError('Must provide FLAGS.yelp_input_dir')
 
-  tf.logging.info('Generating IMDB documents...')
+  tf.logging.info('Generating Yelp documents...')
 
   def check_is_validation(filename, class_label):
     if class_label is None:
       return False
     file_idx = int(filename.split('_')[0])
     is_pos_valid = (class_label and
-                    file_idx >= FLAGS.imdb_validation_pos_start_id)
+                    file_idx >= FLAGS.yelp_validation_pos_start_id)
     is_neg_valid = (not class_label and
-                    file_idx >= FLAGS.imdb_validation_neg_start_id)
+                    file_idx >= FLAGS.yelp_validation_neg_start_id)
     return is_pos_valid or is_neg_valid
 
   dirs = [(dataset + '/pos', True), (dataset + '/neg', False)]
@@ -194,13 +194,13 @@ def imdb_documents(dataset='train',
     dirs.append(('train/unsup', None))
 
   for d, class_label in dirs:
-    for filename in os.listdir(os.path.join(FLAGS.imdb_input_dir, d)):
+    for filename in os.listdir(os.path.join(FLAGS.yelp_input_dir, d)):
       is_validation = check_is_validation(filename, class_label)
       if is_validation and not include_validation:
         continue
 
-      with open(os.path.join(FLAGS.imdb_input_dir, d, filename)) as imdb_f:
-        content = imdb_f.read()
+      with open(os.path.join(FLAGS.yelp_input_dir, d, filename)) as yelp_f:
+        content = yelp_f.read()
       yield Document(
           content=content,
           is_validation=is_validation,
