@@ -1,5 +1,5 @@
 #!/bin/bash
-export BERT_BASE_DIR=./download_folder
+export BERT_BASE_DIR=./bert_weights
 python run_classifier.py \
 --task_name=cola \
 --do_train=true \
