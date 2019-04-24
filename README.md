@@ -15,11 +15,11 @@ The directory `data` contains the raw yelp reviews.
 ### Generate vocabulary
 
 ```bash
-$ IMDB_DATA_DIR=data/processed_data
-$ python src/gen_vocab.py \
-    --output_dir=$IMDB_DATA_DIR \
-    --dataset=imdb \
-    --imdb_input_dir=data \
+YELP_DATA_DIR=adversarial/data/processed_data
+python adversarial/src/gen_vocab.py \
+    --output_dir=$YELP_DATA_DIR \
+    --dataset=yelp \
+    --yelp_input_dir=adversarial/data \
     --lowercase=False
 ```
 
@@ -28,24 +28,24 @@ Vocabulary and frequency files will be generated in `$IMDB_DATA_DIR`.
 ###  Generate training, validation, and test data
 
 ```bash
-$ python src/gen_data.py \
-    --output_dir=$IMDB_DATA_DIR \
-    --dataset=imdb \
-    --imdb_input_dir=data \
+python adversarial/src/gen_data.py \
+    --output_dir=$YELP_DATA_DIR \
+    --dataset=yelp \
+    --yelp_input_dir=adversarial/data \
     --lowercase=False \
     --label_gain=False
 ```
 
-`$IMDB_DATA_DIR` contains TFRecords files.
+`$YELP_DATA_DIR` contains TFRecords files.
 
-### Pretrain IMDB Language Model
+### Pretrain YELP Language Model
 
 ```bash
-$ PRETRAIN_DIR=models/imdb_pretrain
-$ python src/pretrain.py \
+PRETRAIN_DIR=adversarial/models/yelp_pretrain
+python adversarial/src/pretrain.py \
     --train_dir=$PRETRAIN_DIR \
-    --data_dir=$IMDB_DATA_DIR \
-    --vocab_size=61914 \
+    --data_dir=$YELP_DATA_DIR \
+    --vocab_size=18823 \
     --embedding_dims=256 \
     --rnn_cell_size=1024 \
     --num_candidate_samples=1024 \
@@ -69,23 +69,23 @@ pretrained embedding and LSTM variables, and flags related to adversarial
 training and classification.
 
 ```bash
-$ TRAIN_DIR=models/imdb_classify
-$ python src/train_classifier.py \
+TRAIN_DIR=adversarial/models/yelp_train_vat
+python adversarial/src/train_classifier.py \
     --train_dir=$TRAIN_DIR \
     --pretrained_model_dir=$PRETRAIN_DIR \
-    --data_dir=$IMDB_DATA_DIR \
+    --data_dir=$YELP_DATA_DIR \
     --vocab_size=18823 \
     --embedding_dims=256 \
     --rnn_cell_size=1024 \
-    --cl_num_layers=1 \
+    --cl_num_layers=1\
     --cl_hidden_size=30 \
     --batch_size=64 \
-    --learning_rate=0.0005 \
+    --learning_rate=0.001 \
     --learning_rate_decay_factor=0.9998 \
     --max_steps=15000 \
     --max_grad_norm=1.0 \
-    --num_timesteps=400 \
-    --keep_prob_emb=0.5 \
+    --num_timesteps=2 \
+    --keep_prob_emb=0.8 \
     --normalize_embeddings \
     --adv_training_method=vat \
     --perturb_norm_length=5.0
@@ -94,19 +94,19 @@ $ python src/train_classifier.py \
 ### Evaluate on test data
 
 ```bash
-$ EVAL_DIR=/tmp/models/imdb_eval
-$ python evaluate.py \
+EVAL_DIR=adversarial/models/yelp_eval_vat
+python adversarial/src/evaluate.py \
     --eval_dir=$EVAL_DIR \
     --checkpoint_dir=$TRAIN_DIR \
     --eval_data=test \
     --run_once \
-    --num_examples=25000 \
-    --data_dir=$IMDB_DATA_DIR \
-    --vocab_size=86934 \
+    --num_examples=10000 \
+    --data_dir=$YELP_DATA_DIR \
+    --vocab_size=18823 \
     --embedding_dims=256 \
     --rnn_cell_size=1024 \
     --batch_size=256 \
-    --num_timesteps=400 \
+    --num_timesteps=50 \
     --normalize_embeddings
 ```
 
