@@ -1,8 +1,7 @@
 #!/bin/sh
-
 export BERT_BASE_DIR=./bert_weights
-export TRAINED_CLASSIFIER=./bert_output/model.ckpt-<INSERT HIGHEST CHECKPOINT NUMBER HERE>
-python bert/run_classifier.py \
+export TRAINED_CLASSIFIER=./bert_output/model.ckpt-2343
+python run_classifier.py \
 --task_name=cola \
 --do_predict=true \
 --data_dir=./data \
